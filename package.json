@@ -11,7 +11,12 @@
     "type": "git",
     "url": "https://github.com/akd-io/aldent"
   },
-  "keywords": [],
+  "keywords": [
+    "dedent",
+    "tag",
+    "multi-line string",
+    "es6"
+  ],
   "author": "Anders Kjær Damgaard",
   "license": "MIT",
   "files": [
