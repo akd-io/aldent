@@ -1,11 +1,15 @@
 {
   "name": "aldent",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "An al dente indentation tag function",
   "main": "index.ts",
   "type": "module",
   "scripts": {
     "test": "bun test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akd-io/aldent"
   },
   "keywords": [],
   "author": "Anders Kjær Damgaard",

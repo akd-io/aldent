@@ -1,8 +1,18 @@
 # 🍝 aldent
 
+[![npm](https://img.shields.io/npm/v/aldent)](https://www.npmjs.com/package/aldent)
+
+<img src="https://raw.githubusercontent.com/akd-io/aldent/refs/heads/main/img/aldent.png" alt="Aldent banner with usage example" width="100%" />
+
 An al dente indentation tag function inspired by `dedent` and `endent`.
 
 ## Usage
+
+### Installation
+
+```sh
+npm install aldent
+```
 
 ### Removing superfluous indentation
 
@@ -180,7 +190,7 @@ endent`
 `;
 ```
 
-results in
+resolves to
 
 ```
 </a>
@@ -198,10 +208,14 @@ aldent`
 `;
 ```
 
-results in
+resolves to
 
 ```
     </a>
   </div>
 </div>
 ```
+
+## License
+
+[MIT](LICENSE)
