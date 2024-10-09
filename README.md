@@ -4,7 +4,9 @@ An al dente indentation tag function inspired by `dedent` and `endent`.
 
 ## Usage
 
-Use the `aldent` tag function to remove unnecessary indentation from a multiline string:
+### Removing superfluous indentation
+
+Use the `aldent` tag function to remove superfluous indentation from a string:
 
 ```ts
 import aldent from "aldent";
@@ -29,6 +31,8 @@ Resolves to:
   </span>
 </div>
 ```
+
+### Indentation during string interpolation
 
 `aldent` also maintains correct indentation during string interpolation:
 
@@ -80,9 +84,39 @@ Resolving to:
 </div>
 ```
 
-This example also shows that `aldent` knows nothing about HTML, or any other language for that matter. As such it isn't bound to any. We are only manipulating strings here.
+This example also shows that `aldent` knows nothing about HTML, or any other language for that matter. It does not prettify code. We are only manipulating strings here. As such it isn't bound to any language, making it a very versatile tool when it comes to code templating/generation.
 
-This makes `aldent` a very versatile tool when it comes to code templating/generation.
+### Nested template strings
+
+In the above examples, `innerElements` has not had any indentation. Had it been indented, you would need to use `aldent` on the inner template string as well.
+
+Below we also showcase the `aldent(foo)` syntax, which is equivalent to calling `` aldent`${foo}` ``:
+
+```ts
+const innerElements = `
+      <span>a</span>
+      <span>b</span>
+      <span>c</span>
+`;
+
+aldent`
+  <div>
+    ${aldent(innerElements)}
+  </div>
+`;
+```
+
+Resolves to:
+
+```
+<div>
+  <span>a</span>
+  <span>b</span>
+  <span>c</span>
+</div>
+```
+
+Again, the position of the `${aldent(innerElements)}` syntax determines the indentation level of the nested `aldent` call.
 
 ## Comparison to `dedent` and `endent`
 
