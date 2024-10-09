@@ -1,0 +1,23 @@
+{
+  "name": "aldent",
+  "version": "0.0.4",
+  "description": "An al dente indentation tag function",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "bun test"
+  },
+  "keywords": [],
+  "author": "Anders Kjær Damgaard",
+  "license": "MIT",
+  "files": [
+    "index.ts"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "dedent": "^1.5.3",
+    "endent": "^2.1.0",
+    "tsx": "latest",
+    "typescript": "^5.0.0"
+  }
+}
