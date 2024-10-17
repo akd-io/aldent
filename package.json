@@ -1,15 +1,16 @@
 {
-  "name": "aldent",
+  "name": "struct-of-arrays",
   "version": "0.0.6",
   "description": "An al dente indentation tag function",
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "test": "bun test"
+    "test": "bun test",
+    "check-types": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/akd-io/aldent"
+    "url": "https://github.com/akd-io/struct-of-arrays"
   },
   "keywords": [
     "dedent",
@@ -28,5 +29,8 @@
     "endent": "^2.1.0",
     "tsx": "latest",
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
   }
 }

@@ -1,44 +1,30 @@
-export const aldent = (
-  strings: string | TemplateStringsArray,
-  ...values: string[]
-): string => {
-  // Combine the strings and values into a single string with each value's
-  // lines indented according to the indentation before the value
-  let completeString = "";
-  if (typeof strings === "string") {
-    completeString = strings;
-  } else {
-    for (let i = 0; i < values.length; i++) {
-      const indentSpaces = strings[i]?.match(/ +$/)?.[0].length || 0;
-      completeString +=
-        strings[i] +
-        (values[i] || "").split("\n").join("\n" + " ".repeat(indentSpaces));
-    }
-    completeString += strings[strings.length - 1];
-  }
+import { z } from "zod";
 
-  // Trim everything up to and including the last newline character before the first non-whitespace character
-  const firstNonWhitespaceIndex = completeString.search(/\S/);
-  const lastNewlineIndex = completeString.lastIndexOf(
-    "\n",
-    firstNonWhitespaceIndex
-  );
-  const trimmedString = completeString.slice(lastNewlineIndex + 1);
-  const splitString = trimmedString.split("\n");
+export const structOfArrays = <
+  A extends z.ZodRawShape,
+  B extends z.UnknownKeysParam,
+  C extends z.ZodTypeAny,
+  D,
+  E,
+  T extends z.ZodObject<A, B, C, D, E>
+>(
+  schema: T
+) => {
+  const { shape } = schema;
+  const keys = Object.keys(shape) as (keyof typeof shape)[];
 
-  // Find the minimum number of spaces at the beginning of each line
-  let minLeadingSpaceCount = Infinity;
-  for (const line of splitString.filter((l) => l.trim() != "")) {
-    let leadingSpaceCount = line.match(/^ */)?.[0]?.length ?? 0;
-    minLeadingSpaceCount = Math.min(minLeadingSpaceCount, leadingSpaceCount);
-    if (minLeadingSpaceCount === 0) break;
-  }
+  const arrays = keys.reduce((prev, curr) => {
+    return {
+      ...prev,
+      [curr + "s"]: [],
+    };
+  }, {}) as {
+    [K in keyof typeof shape as `${K}s`]: (typeof shape)[K];
+  };
 
-  // Remove minLeadingSpaceCount spaces from the beginning of each line and remove trailing newlines
-  return splitString
-    .map((line) => line.slice(minLeadingSpaceCount))
-    .join("\n")
-    .replace(/\n+$/, "");
+  console.log({ keys });
+
+  return { arrays };
 };
 
-export default aldent;
+export default structOfArrays;
